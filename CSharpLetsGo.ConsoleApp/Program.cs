@@ -43,6 +43,25 @@ var playerPrizeMessage = total >= 16
 
 Console.WriteLine(playerPrizeMessage);
 
+SeparateLines();
+
+// 0.3 Subscription Renewal Message
+
+var daysUntilExpiration = new Random().Next(12);
+
+var expirationMessage = daysUntilExpiration == 0
+    ? "Your subscription has expired!"
+    : daysUntilExpiration == 1
+        ? "Your subscription expires within a day! Renew now and save 20%!"
+        : daysUntilExpiration <= 5
+            ? $"Your subscription expires in {daysUntilExpiration} days! Renew now and save 10%!"
+            : daysUntilExpiration <= 10
+                ? $"Your subscription will expire in {daysUntilExpiration} days! Renew now!"
+                : "";
+
+Console.WriteLine(expirationMessage);
+
+
 return;
 
 static int GetRandomDiceRoll() => new Random().Next(1, 7);
