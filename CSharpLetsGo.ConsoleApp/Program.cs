@@ -1,8 +1,6 @@
 ﻿var dice = new Random();
-var roll = dice.Next(1, 7);
 
-Random secondDice = new();
 
-Console.WriteLine($"The dice roll is: {roll}!!!");
-
-Console.WriteLine($"The dice roll is: {secondDice.Next(1, 7)}!!!");
+Console.WriteLine($"First roll: {dice.Next()}");
+Console.WriteLine($"Second roll: {dice.Next(101)}");
+Console.WriteLine($"Third roll: {dice.Next(50, 101)}");
