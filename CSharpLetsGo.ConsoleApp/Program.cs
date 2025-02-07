@@ -13,6 +13,8 @@ SeparateLines();
 
 // 0.2 Random Dice Roll Logic
 
+Console.WriteLine("02. Dice Roll Logic\n");
+
 var diceRolls = new int[3].Select(_ => GetRandomDiceRoll()).ToArray();
 
 var isDouble = diceRolls.Any(roll => diceRolls.Count(el => el == roll) >= 2);
@@ -30,7 +32,16 @@ if (isTriple) Console.WriteLine("You got a triple! +3 score to total!");
 else if (isDouble) Console.WriteLine("You got a double! +2 score to total!");
 
 Console.WriteLine($"Total Score of the rolls is {total}!!!");
-Console.WriteLine(total > 14 ? "You won the dice roll!" : "You lost the dice roll!");
+
+var playerPrizeMessage = total >= 16
+    ? "Jackpot - you get a new Ford Fiesta!"
+    : total >= 10
+        ? "You get an IBM Model M Babey!"
+        : total == 7
+            ? "You're getting a one way ride to the LinHood!"
+            : "You lost the dice roll! But you get this kitten. Meow.";
+
+Console.WriteLine(playerPrizeMessage);
 
 return;
 
