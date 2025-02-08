@@ -56,6 +56,33 @@ var expirationMessage =
 
 Console.WriteLine(expirationMessage);
 
+SeparateLines();
+
+// 0.4 Order ID Reporting
+
+string[] orderIds =
+[
+    "B123",
+    "C234",
+    "A345",
+    "C15",
+    "B177",
+    "G3003",
+    "C235",
+    "B179"
+];
+
+string[] ordersToBeInvestigated = [];
+
+foreach (var orderId in orderIds)
+{
+    if (!orderId.StartsWith("b", StringComparison.CurrentCultureIgnoreCase)) continue;
+    ordersToBeInvestigated = ordersToBeInvestigated.Concat([orderId]).ToArray();
+    Console.WriteLine($"There are currently {ordersToBeInvestigated.Length} orders to be investigated!");
+}
+
+Console.WriteLine(
+    $"The {ordersToBeInvestigated.Length} orders to be investigated are {string.Join(", ", ordersToBeInvestigated)}!");
 
 return;
 
