@@ -84,8 +84,30 @@ foreach (var orderId in orderIds)
 Console.WriteLine(
     $"The {ordersToBeInvestigated.Length} orders to be investigated are {string.Join(", ", ordersToBeInvestigated)}!");
 
+SeparateLines();
+
+// 0.5 Exam Result Reporting
+
+const int currentAssignments = 5;
+
+Student[] students =
+[
+    new("Sophia", [90, 86, 87, 98, 100]),
+    new("Andrew", [92, 89, 81, 96, 90]),
+    new("Emma", [90, 85, 87, 98, 68]),
+    new("Logan", [90, 95, 87, 88, 96]),
+];
+
+Console.WriteLine("Student\t\tGrade\n");
+
+foreach (var student in students)
+    Console.WriteLine($"{student.Name}\t\t {(decimal)student.Results.Sum() / currentAssignments}");
+
+
 return;
 
 static int GetRandomDiceRoll() => new Random().Next(1, 7);
 
 static void SeparateLines() => Console.WriteLine("\n----\n");
+
+internal record Student(string Name, int[] Results);
