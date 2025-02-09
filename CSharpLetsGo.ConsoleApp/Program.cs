@@ -92,22 +92,56 @@ const int currentAssignments = 5;
 
 Student[] students =
 [
-    new("Sophia", [90, 86, 87, 98, 100]),
-    new("Andrew", [92, 89, 81, 96, 90]),
-    new("Emma", [90, 85, 87, 98, 68]),
-    new("Logan", [90, 95, 87, 88, 96]),
+    new("Sophia", [90, 86, 87, 98, 100, 94, 90]),
+    new("Andrew", [92, 89, 81, 96, 90, 89]),
+    new("Emma", [90, 85, 87, 98, 68, 89, 89, 89]),
+    new("Logan", [90, 95, 87, 88, 96, 96]),
+    new("Becky", [92, 91, 90, 91, 92, 92, 92]),
+    new("Chris", [84, 86, 88, 90, 92, 94, 96, 98]),
+    new("Eric", [80, 90, 100, 80, 90, 100, 80, 90]),
+    new("Gregor", [91, 91, 91, 91, 91, 91, 91])
 ];
 
-Console.WriteLine("Student\t\tGrade\n");
+Console.WriteLine("Student\t\tScore\t\tGrade");
 
 foreach (var student in students)
-    Console.WriteLine($"{student.Name}\t\t {(decimal)student.Results.Sum() / currentAssignments}");
-
+{
+    var totalScore = CalculateStudentScore(student.Results);
+    Console.WriteLine($"{student.Name}\t\t {totalScore}\t\t {GetStudentGrade(totalScore)}");
+}
 
 return;
 
 static int GetRandomDiceRoll() => new Random().Next(1, 7);
 
 static void SeparateLines() => Console.WriteLine("\n----\n");
+
+static decimal CalculateStudentScore(int[] results)
+{
+    var examScore = (decimal)results.Take(currentAssignments).ToArray().Sum();
+    var extraCreditResults = results.Skip(currentAssignments).ToArray();
+
+    if (extraCreditResults.Length == 0) return examScore / currentAssignments;
+
+    return ((decimal)extraCreditResults.Sum() / 10 + examScore) / currentAssignments;
+}
+
+static string GetStudentGrade(decimal score) =>
+    score switch
+    {
+        >= 97 => "A+",
+        >= 93 => "A",
+        >= 90 => "A-",
+        >= 87 => "B+",
+        >= 83 => "B",
+        >= 80 => "B-",
+        >= 77 => "C+",
+        >= 73 => "C",
+        >= 70 => "C-",
+        >= 67 => "D+",
+        >= 63 => "D",
+        >= 60 => "D-",
+        _ => "F"
+    };
 
 internal record Student(string Name, int[] Results);
