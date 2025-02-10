@@ -33,11 +33,13 @@ else if (isDouble) Console.WriteLine("You got a double! +2 score to total!");
 
 Console.WriteLine($"Total Score of the rolls is {total}!!!");
 
-var playerPrizeMessage =
-    total >= 16 ? "Jackpot - you get a new Ford Fiesta!" :
-    total >= 10 ? "You get an IBM Model M Babey!" :
-    total == 7 ? "You're getting a one way ride to the LinHood!" :
-    "You lost the dice roll! But you get this kitten. Meow.";
+var playerPrizeMessage = total switch
+{
+    >= 16 => "Jackpot - you get a new Ford Fiesta!",
+    >= 10 => "You get an IBM Model M Babey!",
+    7 => "You're getting a one way ride to the LinHood!",
+    _ => "You lost the dice roll! But you get this kitten. Meow."
+};
 
 Console.WriteLine(playerPrizeMessage);
 
@@ -47,12 +49,14 @@ SeparateLines();
 
 var daysUntilExpiration = new Random().Next(12);
 
-var expirationMessage =
-    daysUntilExpiration == 0 ? "Your subscription has expired!" :
-    daysUntilExpiration == 1 ? "Your subscription expires within a day! Renew now and save 20%!" :
-    daysUntilExpiration <= 5 ? $"Your subscription expires in {daysUntilExpiration} days! Renew now and save 10%!" :
-    daysUntilExpiration <= 10 ? $"Your subscription will expire in {daysUntilExpiration} days! Renew now!" :
-    "";
+var expirationMessage = daysUntilExpiration switch
+{
+    0 => "Your subscription has expired!",
+    1 => "Your subscription expires within a day! Renew now and save 20%!",
+    <= 5 => $"Your subscription expires in {daysUntilExpiration} days! Renew now and save 10%!",
+    <= 10 => $"Your subscription will expire in {daysUntilExpiration} days! Renew now!",
+    _ => ""
+};
 
 Console.WriteLine(expirationMessage);
 
@@ -133,7 +137,12 @@ StudentScore GetStudentScores(int[] results)
 
     var overallScore = extraCreditPoints + examScore;
 
-    return new StudentScore(examScore, extraCreditScore, extraCreditPoints, overallScore);
+    return new StudentScore(
+        Score: examScore,
+        ExtraScore: extraCreditScore,
+        ExtraScorePoints: extraCreditPoints,
+        OverallScore: overallScore
+    );
 }
 
 static string GetStudentGrade(decimal score) =>
@@ -154,6 +163,14 @@ static string GetStudentGrade(decimal score) =>
         _ => "F"
     };
 
-internal record Student(string Name, int[] Results);
+internal record Student(
+    string Name,
+    int[] Results
+);
 
-internal record StudentScore(decimal Score, decimal ExtraScore, decimal ExtraScorePoints, decimal OverallScore);
+internal record StudentScore(
+    decimal Score,
+    decimal ExtraScore,
+    decimal ExtraScorePoints,
+    decimal OverallScore
+);
