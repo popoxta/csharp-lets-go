@@ -129,7 +129,7 @@ StudentScore GetStudentScores(int[] results)
     var examScore = totalExamScore / currentAssignments;
     var extraCreditTotalScore = (decimal)extraCreditResults.Sum();
     var extraCreditScore = extraCreditTotalScore / extraCreditResults.Length;
-    var extraCreditPoints = (extraCreditTotalScore / 10) / currentAssignments;
+    var extraCreditPoints = extraCreditTotalScore / 10 / currentAssignments;
 
     var overallScore = extraCreditPoints + examScore;
 
