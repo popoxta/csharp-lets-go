@@ -119,6 +119,22 @@ foreach (var student in students)
         $"{GetStudentGrade(studentScore.OverallScore)}");
 }
 
+SeparateLines();
+
+// 0.6 Permissions
+
+const string permission = "Admin|Manager";
+const int level = 55;
+
+var isAdmin = permission.Contains("admin", StringComparison.CurrentCultureIgnoreCase);
+var isManager = permission.Contains("manager", StringComparison.CurrentCultureIgnoreCase);
+
+if (!isAdmin && !isManager) Console.WriteLine("You do not have sufficient privileges.");
+
+if (isAdmin) Console.WriteLine($"Welcome, {(level > 55 ? "Super Admin" : "Admin")} user.");
+else if (isManager && level > 20) Console.WriteLine("Contact an Admin for access.");
+else Console.WriteLine("You do not have sufficient privileges.");
+
 return;
 
 static int GetRandomDiceRoll() => new Random().Next(1, 7);
