@@ -137,7 +137,7 @@ else Console.WriteLine("You do not have sufficient privileges.");
 
 SeparateLines();
 
-// 0.6 FizzBuzz
+// 0.7 FizzBuzz
 
 for (var i = 1; i <= 100; i++)
 {
@@ -150,7 +150,30 @@ for (var i = 1; i <= 100; i++)
     else if (isDivisibleByThree) Console.Write("Fizz!");
 }
 
+SeparateLines();
+
+// 0.8 NPC RPG
+
+var monsterHealth = 10;
+var playerHealth = 10;
+
+do
+{
+    var playerAttackDamage = GetRandomAttackDamage();
+    monsterHealth -= playerAttackDamage;
+    Console.WriteLine($"The monster was attacked for {playerAttackDamage} damage! HP: {monsterHealth}");
+    if (monsterHealth <= 0) continue;
+
+    var monsterAttackDamage = GetRandomAttackDamage();
+    playerHealth -= monsterAttackDamage;
+    Console.WriteLine($"The player was attacked for {monsterAttackDamage} damage! HP: {playerHealth}");
+} while (monsterHealth > 0 && playerHealth > 0);
+
+Console.WriteLine($"The battle is over! The winner is {(playerHealth <= 0 ? "Monster" : "Player")}!");
+
 return;
+
+static int GetRandomAttackDamage() => new Random().Next(1, 11);
 
 static int GetRandomDiceRoll() => new Random().Next(1, 7);
 
