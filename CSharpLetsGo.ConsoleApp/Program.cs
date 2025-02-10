@@ -127,7 +127,7 @@ static void SeparateLines() => Console.WriteLine("\n----\n");
 
 StudentScore GetStudentScores(int[] results)
 {
-    var totalExamScore = (decimal)results.Take(currentAssignments).ToArray().Sum();
+    var totalExamScore = (decimal)results.Take(currentAssignments).Sum();
     var extraCreditResults = results.Skip(currentAssignments).ToArray();
 
     var examScore = totalExamScore / currentAssignments;
