@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpLetsGo.ConsoleApp", "CSharpLetsGo.ConsoleApp\CSharpLetsGo.ConsoleApp.csproj", "{7A970CD0-A482-4B36-ABEC-CE303F6F5A25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpLetsGo.LanguageLearning", "CSharpLetsGo.LanguageLearning\CSharpLetsGo.LanguageLearning.csproj", "{7A970CD0-A482-4B36-ABEC-CE303F6F5A25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
