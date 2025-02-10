@@ -135,6 +135,21 @@ if (isAdmin) Console.WriteLine($"Welcome, {(level > 55 ? "Super Admin" : "Admin"
 else if (isManager && level > 20) Console.WriteLine("Contact an Admin for access.");
 else Console.WriteLine("You do not have sufficient privileges.");
 
+SeparateLines();
+
+// 0.6 FizzBuzz
+
+for (var i = 1; i <= 100; i++)
+{
+    var isDivisibleByThree = i % 3 == 0;
+    var isDivisibleByFive = i % 5 == 0;
+
+    Console.Write($"\n{i} ");
+    if (isDivisibleByFive && isDivisibleByThree) Console.Write("FizzBuzz!");
+    else if (isDivisibleByFive) Console.Write("Buzz!");
+    else if (isDivisibleByThree) Console.Write("Fizz!");
+}
+
 return;
 
 static int GetRandomDiceRoll() => new Random().Next(1, 7);
