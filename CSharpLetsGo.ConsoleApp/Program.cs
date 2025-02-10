@@ -102,12 +102,17 @@ Student[] students =
     new("Gregor", [91, 91, 91, 91, 91, 91, 91])
 ];
 
-Console.WriteLine("Student\t\tScore\t\tGrade");
+Console.WriteLine("Student\t\tScore\t\tExtra Score\t\tOverall Score\tGrade");
 
 foreach (var student in students)
 {
-    var totalScore = CalculateStudentScore(student.Results);
-    Console.WriteLine($"{student.Name}\t\t {totalScore}\t\t {GetStudentGrade(totalScore)}");
+    var studentScore = GetStudentScores(student.Results);
+    Console.WriteLine(
+        $"{student.Name}\t\t" +
+        $"{studentScore.Score}\t\t" +
+        $"{studentScore.ExtraScore}({studentScore.ExtraScorePoints} pts)\t\t" +
+        $"{studentScore.OverallScore}\t\t" +
+        $"{GetStudentGrade(studentScore.OverallScore)}");
 }
 
 return;
@@ -116,14 +121,19 @@ static int GetRandomDiceRoll() => new Random().Next(1, 7);
 
 static void SeparateLines() => Console.WriteLine("\n----\n");
 
-static decimal CalculateStudentScore(int[] results)
+StudentScore GetStudentScores(int[] results)
 {
-    var examScore = (decimal)results.Take(currentAssignments).ToArray().Sum();
+    var totalExamScore = (decimal)results.Take(currentAssignments).ToArray().Sum();
     var extraCreditResults = results.Skip(currentAssignments).ToArray();
 
-    if (extraCreditResults.Length == 0) return examScore / currentAssignments;
+    var examScore = totalExamScore / currentAssignments;
+    var extraCreditTotalScore = (decimal)extraCreditResults.Sum();
+    var extraCreditScore = extraCreditTotalScore / extraCreditResults.Length;
+    var extraCreditPoints = (extraCreditTotalScore / 10) / currentAssignments;
 
-    return ((decimal)extraCreditResults.Sum() / 10 + examScore) / currentAssignments;
+    var overallScore = extraCreditPoints + examScore;
+
+    return new StudentScore(examScore, extraCreditScore, extraCreditPoints, overallScore);
 }
 
 static string GetStudentGrade(decimal score) =>
@@ -145,3 +155,5 @@ static string GetStudentGrade(decimal score) =>
     };
 
 internal record Student(string Name, int[] Results);
+
+internal record StudentScore(decimal Score, decimal ExtraScore, decimal ExtraScorePoints, decimal OverallScore);
