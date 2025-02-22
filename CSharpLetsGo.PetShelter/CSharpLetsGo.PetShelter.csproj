@@ -8,4 +8,8 @@
         <RootNamespace>PetShelter</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\CSharpLetsGo.Shared\CSharpLetsGo.Shared.csproj" />
+    </ItemGroup>
+
 </Project>
