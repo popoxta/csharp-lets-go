@@ -18,6 +18,19 @@ public static class Prompt
     }
 
     /// <summary>
+    /// Prompts the user for a string input until a valid input is given.
+    /// </summary>
+    /// <param name="prompt"></param>
+    /// <returns></returns>
+    public static string GetString(string? prompt)
+    {
+        var input = "";
+        if (prompt is not null) Console.WriteLine(prompt);
+        while (string.IsNullOrEmpty(input)) input = Console.ReadLine()?.Trim() ?? "";
+        return input;
+    }
+
+    /// <summary>
     /// Prompts the user to press enter to continue.
     /// </summary>
     public static void PressEnterToContinue()
