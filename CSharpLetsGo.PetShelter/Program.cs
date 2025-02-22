@@ -14,7 +14,7 @@ const string optionsPrompt =
     5. Edit pet personality
     6. Display cats with specific characteristics
     7. Display dogs with specific characteristics
-    
+
     Please select an option.
     """;
 
@@ -81,22 +81,29 @@ do
         case MenuOptions.Exit:
             Console.WriteLine("Goodbye!");
             return;
+
         case MenuOptions.List:
             Console.WriteLine("All pets:");
             Console.WriteLine("Species\t\tName\t\tAge");
             foreach (var pet in cats.Concat(dogs).ToArray())
                 Console.WriteLine($"{pet.Species}\t\t{pet.Name}\t\t{pet.Age}");
             break;
+
         case MenuOptions.Add:
             break;
+
         case MenuOptions.EditAge:
             break;
+
         case MenuOptions.EditPersonality:
             break;
+
         case MenuOptions.DisplayCatsWithCharacteristic:
             break;
+
         case MenuOptions.DisplayDogsWithCharacteristic:
             break;
+
         case MenuOptions.Default:
             break;
     }
