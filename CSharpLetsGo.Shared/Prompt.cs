@@ -2,11 +2,6 @@
 
 public static class Prompt
 {
-    private static void WritePromptIfNotNull(string? prompt)
-    {
-        if (prompt is not null) Console.WriteLine(prompt);
-    }
-
     /// <summary>
     /// Prompts the user for an integer input until a valid integer input is given.
     /// </summary>
@@ -16,8 +11,19 @@ public static class Prompt
     /// <returns>An integer representing the numeric input given by the user.</returns>
     public static int GetInt(string? prompt, int max = int.MaxValue, int min = int.MinValue)
     {
-        int result;
         WritePromptIfNotNull(prompt);
+        return GetInt(min, max);
+    }
+
+    /// <summary>
+    /// Prompts the user for an integer input until a valid integer input is given.
+    /// </summary>
+    /// <param name="max">Maximum possible value for the input.</param>
+    /// <param name="min">Minimum possible value for the input.</param>
+    /// <returns>An integer representing the numeric input given by the user.</returns>
+    public static int GetInt(int max = int.MaxValue, int min = int.MinValue)
+    {
+        int result;
         while (!int.TryParse(Console.ReadLine(), out result) && result >= min && result <= max) ;
         return result;
     }
@@ -56,5 +62,10 @@ public static class Prompt
     {
         Console.WriteLine("Press enter to continue...");
         while (Console.ReadKey().Key != ConsoleKey.Enter) ;
+    }
+
+    private static void WritePromptIfNotNull(string? prompt)
+    {
+        if (prompt is not null) Console.WriteLine(prompt);
     }
 }
