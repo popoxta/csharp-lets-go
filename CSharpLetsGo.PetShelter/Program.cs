@@ -1,8 +1,6 @@
 ﻿using CSharpLetsGo.Shared;
 using PetShelter;
 
-const int maxPets = 8;
-
 const string optionsPrompt =
     """
     Welcome to PetFriends!
@@ -18,8 +16,9 @@ const string optionsPrompt =
     Please select an option.
     """;
 
-
-Pet[] cats =
+// todo merge cats and dogs
+// todo change to list
+List<Pet> pets =
 [
     new()
     {
@@ -42,11 +41,6 @@ Pet[] cats =
         Age = 2,
         PhysicalCondition = "Great"
     },
-];
-
-
-Pet[] dogs =
-[
     new()
     {
         Species = Species.Dog,
@@ -85,14 +79,39 @@ do
         case MenuOptions.List:
             Console.WriteLine("All pets:");
             Console.WriteLine("Species\t\tName\t\tAge");
-            foreach (var pet in cats.Concat(dogs).ToArray())
+            foreach (var pet in pets)
                 Console.WriteLine($"{pet.Species}\t\t{pet.Name}\t\t{pet.Age}");
             break;
 
         case MenuOptions.Add:
+            Console.WriteLine("Please enter the new pet details.");
+
+            var newPet = new Pet
+            {
+                Species = Prompt.GetInt("Species: \n1. Cat\n2. Dog") == 1 ? Species.Cat : Species.Dog,
+                Age = Prompt.GetInt("Age: "),
+                Name = Prompt.GetString("Name: "),
+                PhysicalCondition = Prompt.GetString("Physical condition: "),
+                Personality =
+                    Prompt.YesOrNo("Would you like to add a personality?") ? Prompt.GetString("Personality: ") : null
+            };
+
+            pets.Add(newPet);
             break;
 
         case MenuOptions.EditAge:
+            Console.WriteLine("What pet would you like to change the age for?");
+
+            foreach (var (pet, i) in pets.Select((value, i) => (value, i)))
+                Console.WriteLine($"{i}. {pet.Species} {pet.Name} - {pet.Age} years");
+
+            var petToEdit = pets[Prompt.GetInt(max: pets.Count - 1, min: 0)];
+
+            petToEdit.Age = Prompt.GetInt($"Please enter a new age for {petToEdit.Name}",
+                max: pets.Count - 1, min: 0);
+
+            Console.WriteLine($"Thanks! {petToEdit.Name}'s age has been updated to {petToEdit.Age}");
+
             break;
 
         case MenuOptions.EditPersonality:
@@ -108,7 +127,6 @@ do
             break;
     }
 
-    ;
     Prompt.PressEnterToContinue();
 } while (menuSelection != MenuOptions.Exit);
 
