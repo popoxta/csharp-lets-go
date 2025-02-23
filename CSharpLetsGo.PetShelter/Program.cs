@@ -98,6 +98,9 @@ do
             };
 
             pets.Add(newPet);
+
+            Console.WriteLine($"New pet {newPet.Name} has been added!");
+
             break;
 
         case MenuOptions.EditAge:
@@ -126,9 +129,19 @@ do
         }
 
         case MenuOptions.DisplayCats:
+            Console.WriteLine("All cats:");
+            ListAllPets(pets, (pet, _) =>
+            {
+                if (pet.Species == Species.Cat) Console.WriteLine($"{pet.Name}");
+            });
             break;
 
         case MenuOptions.DisplayDogs:
+            Console.WriteLine("All dogs:");
+            ListAllPets(pets, (pet, _) =>
+            {
+                if (pet.Species == Species.Dog) Console.WriteLine($"{pet.Name}");
+            });
             break;
 
         case MenuOptions.Default:
