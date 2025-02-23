@@ -16,8 +16,6 @@ const string optionsPrompt =
     Please select an option.
     """;
 
-// todo merge cats and dogs
-// todo change to list
 List<Pet> pets =
 [
     new()
@@ -74,13 +72,13 @@ do
     {
         case MenuOptions.Exit:
             Console.WriteLine("Goodbye!");
-            return;
+            break;
 
         case MenuOptions.List:
             Console.WriteLine("All pets:");
             Console.WriteLine("Species\t\tName\t\tAge");
 
-            ListAllPets(pets, (pet, _) => Console.WriteLine($"{pet.Species}\t\t{pet.Name}\t\t{pet.Age}"));
+            ProcessAllPets(pets, (pet, _) => Console.WriteLine($"{pet.Species}\t\t{pet.Name}\t\t{pet.Age}"));
 
             break;
 
@@ -106,7 +104,7 @@ do
         case MenuOptions.EditAge:
         {
             Console.WriteLine("What pet would you like to change the age for?");
-            ListAllPets(pets, (pet, i) => Console.WriteLine($"{i}. {pet.Species} {pet.Name} - {pet.Age} years"));
+            ProcessAllPets(pets, (pet, i) => Console.WriteLine($"{i}. {pet.Species} {pet.Name} - {pet.Age} years"));
 
             var petToEdit = pets[Prompt.GetInt(max: pets.Count - 1, min: 0)];
             petToEdit.Age = Prompt.GetInt($"Please enter a new age for {petToEdit.Name}",
@@ -118,7 +116,7 @@ do
         case MenuOptions.EditPersonality:
         {
             Console.WriteLine("What pet would you like to change the personality for?");
-            ListAllPets(pets,
+            ProcessAllPets(pets,
                 (pet, i) => Console.WriteLine(
                     $"{i}. {pet.Species} {pet.Name} - {pet.Personality ?? "No personality set"}"));
 
@@ -130,7 +128,7 @@ do
 
         case MenuOptions.DisplayCats:
             Console.WriteLine("All cats:");
-            ListAllPets(pets, (pet, _) =>
+            ProcessAllPets(pets, (pet, _) =>
             {
                 if (pet.Species == Species.Cat) Console.WriteLine($"{pet.Name}");
             });
@@ -138,13 +136,14 @@ do
 
         case MenuOptions.DisplayDogs:
             Console.WriteLine("All dogs:");
-            ListAllPets(pets, (pet, _) =>
+            ProcessAllPets(pets, (pet, _) =>
             {
                 if (pet.Species == Species.Dog) Console.WriteLine($"{pet.Name}");
             });
             break;
 
         case MenuOptions.Default:
+        default:
             break;
     }
 
@@ -154,7 +153,7 @@ do
 return;
 
 
-static void ListAllPets(List<Pet> pets, Action<Pet, int> callback)
+static void ProcessAllPets(List<Pet> pets, Action<Pet, int> callback)
 {
     foreach (var (pet, i) in pets.Select((value, i) => (value, i)))
         callback(pet, i);
