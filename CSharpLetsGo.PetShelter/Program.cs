@@ -10,8 +10,8 @@ const string optionsPrompt =
     3. Add pet
     4. Edit pet age
     5. Edit pet personality
-    6. Display cats with specific characteristics
-    7. Display dogs with specific characteristics
+    6. Display cats
+    7. Display dogs
 
     Please select an option.
     """;
@@ -79,8 +79,9 @@ do
         case MenuOptions.List:
             Console.WriteLine("All pets:");
             Console.WriteLine("Species\t\tName\t\tAge");
-            foreach (var pet in pets)
-                Console.WriteLine($"{pet.Species}\t\t{pet.Name}\t\t{pet.Age}");
+
+            ListAllPets(pets, (pet, _) => Console.WriteLine($"{pet.Species}\t\t{pet.Name}\t\t{pet.Age}"));
+
             break;
 
         case MenuOptions.Add:
@@ -100,27 +101,34 @@ do
             break;
 
         case MenuOptions.EditAge:
+        {
             Console.WriteLine("What pet would you like to change the age for?");
-
-            foreach (var (pet, i) in pets.Select((value, i) => (value, i)))
-                Console.WriteLine($"{i}. {pet.Species} {pet.Name} - {pet.Age} years");
+            ListAllPets(pets, (pet, i) => Console.WriteLine($"{i}. {pet.Species} {pet.Name} - {pet.Age} years"));
 
             var petToEdit = pets[Prompt.GetInt(max: pets.Count - 1, min: 0)];
-
             petToEdit.Age = Prompt.GetInt($"Please enter a new age for {petToEdit.Name}",
                 max: pets.Count - 1, min: 0);
-
             Console.WriteLine($"Thanks! {petToEdit.Name}'s age has been updated to {petToEdit.Age}");
-
             break;
+        }
 
         case MenuOptions.EditPersonality:
+        {
+            Console.WriteLine("What pet would you like to change the personality for?");
+            ListAllPets(pets,
+                (pet, i) => Console.WriteLine(
+                    $"{i}. {pet.Species} {pet.Name} - {pet.Personality ?? "No personality set"}"));
+
+            var petToEdit = pets[Prompt.GetInt(max: pets.Count - 1, min: 0)];
+            petToEdit.Personality = Prompt.GetString($"Please enter a new personality for {petToEdit.Name}");
+            Console.WriteLine($"Thanks! {petToEdit.Name}'s personality has been updated to {petToEdit.Personality}");
+            break;
+        }
+
+        case MenuOptions.DisplayCats:
             break;
 
-        case MenuOptions.DisplayCatsWithCharacteristic:
-            break;
-
-        case MenuOptions.DisplayDogsWithCharacteristic:
+        case MenuOptions.DisplayDogs:
             break;
 
         case MenuOptions.Default:
@@ -130,6 +138,16 @@ do
     Prompt.PressEnterToContinue();
 } while (menuSelection != MenuOptions.Exit);
 
+return;
+
+
+static void ListAllPets(List<Pet> pets, Action<Pet, int> callback)
+{
+    foreach (var (pet, i) in pets.Select((value, i) => (value, i)))
+        callback(pet, i);
+}
+
+
 internal enum MenuOptions
 {
     Default,
@@ -138,6 +156,6 @@ internal enum MenuOptions
     Add,
     EditAge,
     EditPersonality,
-    DisplayCatsWithCharacteristic,
-    DisplayDogsWithCharacteristic
+    DisplayCats,
+    DisplayDogs
 }
