@@ -171,6 +171,18 @@ do
 
 Console.WriteLine($"The battle is over! The winner is {(playerHealth <= 0 ? "Monster" : "Player")}!");
 
+SeparateLines();
+
+// 0.9 Math operation output
+
+const int intValue = 11;
+const decimal decimalValue = 6.2m;
+const float floatValue = 4.3f;
+
+Console.WriteLine($"The first result is {Convert.ToInt32(intValue / decimalValue)}");
+Console.WriteLine($"The second result is {decimalValue / (decimal)floatValue}");
+Console.WriteLine($"The third result is {floatValue / intValue}");
+
 return;
 
 static int GetRandomAttackDamage() => new Random().Next(1, 11);
