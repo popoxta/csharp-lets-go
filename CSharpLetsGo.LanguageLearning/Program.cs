@@ -196,6 +196,19 @@ var reversed = string.Join(' ', pangram.ToLower()
 Console.WriteLine(pangram);
 Console.WriteLine(reversed);
 
+SeparateLines();
+
+// 0.11 Parse orders
+
+const int orderNumberSize = 4;
+const string orderStream = "B123,C234,A345,C15,B177,G3003,C235,B179";
+
+foreach (var order in orderStream.Split(',').OrderBy(order => order))
+{
+    Console.Write($"\n{order}");
+    if (order.Length != orderNumberSize) Console.Write("\t- Error in order number!");
+}
+
 return;
 
 static int GetRandomAttackDamage() => new Random().Next(1, 11);
