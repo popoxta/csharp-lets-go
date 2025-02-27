@@ -183,6 +183,19 @@ Console.WriteLine($"The first result is {Convert.ToInt32(intValue / decimalValue
 Console.WriteLine($"The second result is {decimalValue / (decimal)floatValue}");
 Console.WriteLine($"The third result is {floatValue / intValue}");
 
+SeparateLines();
+
+// 0.10 Reverse words in a string
+
+const string pangram = "The quick brown fox jumps over the lazy dog";
+
+var reversed = string.Join(' ', pangram.ToLower()
+    .Split(' ')
+    .Select(word => new string(word.Reverse().ToArray())));
+
+Console.WriteLine(pangram);
+Console.WriteLine(reversed);
+
 return;
 
 static int GetRandomAttackDamage() => new Random().Next(1, 11);
