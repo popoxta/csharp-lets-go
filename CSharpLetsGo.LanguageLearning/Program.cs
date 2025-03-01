@@ -213,14 +213,14 @@ SeparateLines();
 
 // 0.12 String indexing
 
-const string message = "Find what is (inside the parentheses)";
+const string parenthesesMessage = "Find what is (inside the parentheses)";
 
-var openingPosition = message.IndexOf('(');
-var closingPosition = message.IndexOf(')');
+var openingPosition = parenthesesMessage.IndexOf('(');
+var closingPosition = parenthesesMessage.IndexOf(')');
 
 var lengthOfCharactersBetweenParentheses = closingPosition - openingPosition - 1;
 
-var contentBetweenParentheses = message.Substring(openingPosition + 1, lengthOfCharactersBetweenParentheses);
+var contentBetweenParentheses = parenthesesMessage.Substring(openingPosition + 1, lengthOfCharactersBetweenParentheses);
 
 Console.WriteLine($"Content between the parentheses: {contentBetweenParentheses}");
 
