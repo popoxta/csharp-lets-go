@@ -209,6 +209,22 @@ foreach (var order in orderStream.Split(',').OrderBy(order => order))
     if (order.Length != orderNumberSize) Console.Write("\t- Error in order number!");
 }
 
+SeparateLines();
+
+// 0.12 String indexing
+
+const string message = "Find what is (inside the parentheses)";
+
+var openingPosition = message.IndexOf('(');
+var closingPosition = message.IndexOf(')');
+
+var lengthOfCharactersBetweenParentheses = closingPosition - openingPosition - 1;
+
+var contentBetweenParentheses = message.Substring(openingPosition + 1, lengthOfCharactersBetweenParentheses);
+
+Console.WriteLine($"Content between the parentheses: {contentBetweenParentheses}");
+
+
 return;
 
 static int GetRandomAttackDamage() => new Random().Next(1, 11);
