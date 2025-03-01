@@ -1,5 +1,7 @@
 ﻿// 01. Class Math Exercise
 
+using System.Text.RegularExpressions;
+
 Console.WriteLine("01. Class Math Exercise\n");
 
 const int firstValue = 500;
@@ -224,6 +226,15 @@ var contentBetweenParentheses = parenthesesMessage.Substring(openingPosition + 1
 
 Console.WriteLine($"Content between the parentheses: {contentBetweenParentheses}");
 
+SeparateLines();
+
+// 0.13 Modifying string data
+
+const string rawHtmlInput = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+
+var quantity = LocalRegex.SpanRegex().Match(rawHtmlInput).Groups[1].Value;
+
+Console.WriteLine($"<h2>Widgets &reg;</h2><span>{quantity}</span>");
 
 return;
 
@@ -282,3 +293,9 @@ internal record StudentScore(
     decimal ExtraScorePoints,
     decimal OverallScore
 );
+
+internal static partial class LocalRegex
+{
+    [GeneratedRegex(@"<span>(\d+)</span>")]
+    public static partial Regex SpanRegex();
+}
