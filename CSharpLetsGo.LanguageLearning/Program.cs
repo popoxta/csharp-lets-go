@@ -232,7 +232,7 @@ SeparateLines();
 
 const string rawHtmlInput = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
 
-var quantity = LocalRegex.SpanRegex().Match(rawHtmlInput).Groups[1].Value;
+var quantity = RegEx.SpanRegEx().Match(rawHtmlInput).Groups[1].Value;
 
 Console.WriteLine($"<h2>Widgets &reg;</h2><span>{quantity}</span>");
 
@@ -294,8 +294,8 @@ internal record StudentScore(
     decimal OverallScore
 );
 
-internal static partial class LocalRegex
+internal static partial class RegEx
 {
     [GeneratedRegex(@"<span>(\d+)</span>")]
-    public static partial Regex SpanRegex();
+    public static partial Regex SpanRegEx();
 }
