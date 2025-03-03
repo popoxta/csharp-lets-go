@@ -76,9 +76,12 @@ do
 
         case MenuOptions.List:
             Console.WriteLine("All pets:");
-            Console.WriteLine("Species\t\tName\t\tAge");
 
-            ProcessAllPets(pets, (pet, _) => Console.WriteLine($"{pet.Species}\t\t{pet.Name}\t\t{pet.Age}"));
+            ProcessAllPets(pets, (pet, _) =>
+            {
+                pet.LogPetInfo();
+                Console.WriteLine();
+            });
 
             break;
 
