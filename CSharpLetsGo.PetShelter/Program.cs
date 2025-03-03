@@ -12,6 +12,8 @@ const string optionsPrompt =
     5. Edit pet personality
     6. Display cats
     7. Display dogs
+    8. Find pet by personality
+    9. Find pet by condition
 
     Please select an option.
     """;
@@ -145,6 +147,44 @@ do
             });
             break;
 
+        case MenuOptions.FindByPersonality:
+            var personality = Prompt.GetString("Please enter a personality to search for");
+
+            var petsWithPersonalityMatched = pets.Where(pet =>
+                pet.Personality != null &&
+                pet.Personality.Contains(personality, StringComparison.CurrentCultureIgnoreCase)).ToArray();
+
+            if (petsWithPersonalityMatched.Length > 0)
+            {
+                Console.WriteLine(
+                    $"Found {petsWithPersonalityMatched.Length} pets with personality matching {personality}:");
+                foreach (var pet in petsWithPersonalityMatched)
+                {
+                    pet.LogPetInfo();
+                    Console.WriteLine();
+                }
+            }
+            else Console.WriteLine($"Could not find any pets with personality matching {personality}!");
+
+            break;
+        case MenuOptions.FindByCondition:
+            var condition = Prompt.GetString("Please enter a personality to search for");
+
+            var petsWithConditionMatched = pets.Where(pet =>
+                pet.PhysicalCondition.Contains(condition, StringComparison.CurrentCultureIgnoreCase)).ToArray();
+
+            if (petsWithConditionMatched.Length > 0)
+            {
+                Console.WriteLine($"Found {petsWithConditionMatched.Length} pets with condition matching {condition}:");
+                foreach (var pet in petsWithConditionMatched)
+                {
+                    pet.LogPetInfo();
+                    Console.WriteLine();
+                }
+            }
+            else Console.WriteLine($"Could not find any pets with condition matching {condition}!");
+
+            break;
         case MenuOptions.Default:
         default:
             break;
@@ -172,5 +212,7 @@ internal enum MenuOptions
     EditAge,
     EditPersonality,
     DisplayCats,
-    DisplayDogs
+    DisplayDogs,
+    FindByPersonality,
+    FindByCondition
 }
