@@ -15,7 +15,7 @@ public class Pet
     public required int Age { get; set; }
     public required string Name { get; init; }
     public required string PhysicalCondition { get; init; }
-    
+
     public int SuggestedDonation { get; init; } = 50;
     public string? Personality { get; set; }
 
@@ -24,6 +24,7 @@ public class Pet
         Console.WriteLine(
             $"""
              {Species} {Name}, {Age} years old
+             Suggested Donation: {SuggestedDonation:C}
              Condition: {PhysicalCondition.Truncate(15)}
              Personality: {(Personality != null ? Personality.Truncate(15) : "N/A")}
              """
