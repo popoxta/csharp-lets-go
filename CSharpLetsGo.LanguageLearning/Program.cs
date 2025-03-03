@@ -236,6 +236,32 @@ var quantity = RegEx.SpanRegEx().Match(rawHtmlInput).Groups[1].Value;
 
 Console.WriteLine($"<h2>Widgets &reg;</h2><span>{quantity}</span>");
 
+SeparateLines();
+
+// 0.14 Display company email addresses
+
+string[,] corporateStaff =
+{
+    { "Robert", "Bavin" }, { "Simon", "Bright" },
+    { "Kim", "Sinclair" }, { "Aashrita", "Kamath" },
+    { "Sarah", "Delucchi" }, { "Sinan", "Ali" }
+};
+
+string[,] externalStaff =
+{
+    { "Vinnie", "Ashton" }, { "Cody", "Dysart" },
+    { "Shay", "Lawrence" }, { "Daren", "Valdes" }
+};
+
+const string internalDomain = "contoso.com";
+const string externalDomain = "hayworth.com";
+
+for (var i = 0; i < corporateStaff.GetLength(0); i++)
+    Console.WriteLine(GetEmailAddress(corporateStaff[i, 0], corporateStaff[i, 1], internalDomain));
+
+for (var i = 0; i < externalStaff.GetLength(0); i++)
+    Console.WriteLine(GetEmailAddress(externalStaff[i, 0], externalStaff[i, 1], externalDomain));
+
 return;
 
 static int GetRandomAttackDamage() => new Random().Next(1, 11);
@@ -243,6 +269,9 @@ static int GetRandomAttackDamage() => new Random().Next(1, 11);
 static int GetRandomDiceRoll() => new Random().Next(1, 7);
 
 static void SeparateLines() => Console.WriteLine("\n----\n");
+
+static string GetEmailAddress(string firstName, string lastName, string domain) =>
+    $"{(firstName[..2] + lastName).ToLower()}@{domain}";
 
 StudentScore GetStudentScores(int[] results)
 {
