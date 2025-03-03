@@ -15,6 +15,8 @@ public class Pet
     public required int Age { get; set; }
     public required string Name { get; init; }
     public required string PhysicalCondition { get; init; }
+    
+    public int SuggestedDonation { get; init; } = 50;
     public string? Personality { get; set; }
 
     public void LogPetInfo()

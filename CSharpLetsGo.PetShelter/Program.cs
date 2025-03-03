@@ -39,14 +39,16 @@ List<Pet> pets =
         Species = Species.Cat,
         Name = "Joseph",
         Age = 2,
-        PhysicalCondition = "Great"
+        PhysicalCondition = "Great",
+        SuggestedDonation = 100
     },
     new()
     {
         Species = Species.Dog,
         Name = "Lucy",
         Age = 3,
-        PhysicalCondition = "Very good"
+        PhysicalCondition = "Very good",
+        SuggestedDonation = 90
     },
     new()
     {
