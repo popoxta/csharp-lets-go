@@ -1,4 +1,6 @@
-﻿namespace PetShelter;
+﻿using CSharpLetsGo.Shared;
+
+namespace PetShelter;
 
 public enum Species
 {
@@ -14,4 +16,15 @@ public class Pet
     public required string Name { get; init; }
     public required string PhysicalCondition { get; init; }
     public string? Personality { get; set; }
+
+    public void LogPetInfo()
+    {
+        Console.WriteLine(
+            $"""
+             {Species} {Name}, {Age} years old
+             Condition: {PhysicalCondition.Truncate(15)}
+             Personality: {(Personality != null ? Personality.Truncate(15) : "N/A")}
+             """
+        );
+    }
 }
