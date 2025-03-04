@@ -1,5 +1,4 @@
-﻿
-using CSharpLetsGo.PettingZoo;
+﻿using CSharpLetsGo.PettingZoo;
 
 string[] animalTypes =
 [
@@ -13,3 +12,7 @@ var animals = animalTypes.Select(animal => new Animal
     AnimalType = animal,
 }).ToArray();
 
+var zoo = new Zoo()
+{
+    Animals = animals,
+};
