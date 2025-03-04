@@ -25,4 +25,4 @@ var zoo = new Zoo()
 
 zoo.AssignAnimalsToGroups();
 
-foreach (var group in visitingGroups) group.WriteAssignedAnimals();
+foreach (var group in zoo.VisitingGroups) group.WriteAssignedAnimals();
