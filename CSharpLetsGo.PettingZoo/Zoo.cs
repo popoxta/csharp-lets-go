@@ -2,7 +2,7 @@
 
 public class Zoo
 {
-    public required Animal[] Animals { get; set; }
+    public required Animal[] Animals { get; init; }
 
     public Animal[] GetShuffledAnimals()
     {
