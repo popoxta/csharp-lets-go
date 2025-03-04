@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpLetsGo.PetShelter", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpLetsGo.Shared", "CSharpLetsGo.Shared\CSharpLetsGo.Shared.csproj", "{F3BB3613-3E31-4656-801E-A033BAC67435}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpLetsGo.PettingZoo", "CSharpLetsGo.PettingZoo\CSharpLetsGo.PettingZoo.csproj", "{536883A9-D8B8-481F-9009-9A8C903D9338}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{F3BB3613-3E31-4656-801E-A033BAC67435}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3BB3613-3E31-4656-801E-A033BAC67435}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3BB3613-3E31-4656-801E-A033BAC67435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{536883A9-D8B8-481F-9009-9A8C903D9338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{536883A9-D8B8-481F-9009-9A8C903D9338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{536883A9-D8B8-481F-9009-9A8C903D9338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{536883A9-D8B8-481F-9009-9A8C903D9338}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
