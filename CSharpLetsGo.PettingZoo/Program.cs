@@ -22,3 +22,7 @@ var zoo = new Zoo()
     Animals = animals,
     VisitingGroups = visitingGroups,
 };
+
+zoo.AssignAnimalsToGroups();
+
+foreach (var group in visitingGroups) group.WriteAssignedAnimals();
