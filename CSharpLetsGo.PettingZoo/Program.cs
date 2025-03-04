@@ -16,3 +16,8 @@ var zoo = new Zoo()
 {
     Animals = animals,
 };
+
+var visitingGroups = new SchoolGroup[5].Select((_, i) => new SchoolGroup
+{
+    GroupName = $"School group {i + 1}"
+}).ToArray();
